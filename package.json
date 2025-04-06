@@ -1,0 +1,25 @@
+{
+  "name": "devtree",
+  "version": "1.0.0",
+  "description": "Primer Proyecto con Express y TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fredy-glz/devtree-jarg.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "react",
+    "vite"
+  ],
+  "author": "José Alfredo Romero González",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fredy-glz/devtree-jarg/issues"
+  },
+  "homepage": "https://github.com/fredy-glz/devtree-jarg#readme"
+}
