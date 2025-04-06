@@ -1,12 +1,13 @@
 {
   "name": "devtree",
-  "type": "module",
   "version": "1.0.0",
   "description": "Primer Proyecto con Express y TypeScript",
   "main": "index.js",
   "scripts": {
     "dev:watch": "node --watch index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,9 @@
     "express": "^5.1.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "@types/express": "^5.0.1",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
