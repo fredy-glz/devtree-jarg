@@ -4,6 +4,9 @@ import router from "./router";
 
 const app = express();
 
-app.use("/api", router);
+// Leer datos de formularios
+app.use(express.json());
+
+app.use("/", router);
 
 export default app;
