@@ -7,6 +7,7 @@ import { checkPassword, hashPassword } from "../utils/auth";
 export const createAccount = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
+  // Valida si el email ya esta registrado
   const userExists = await User.findOne({ email });
   if (userExists) {
     const error = new Error("Un usuario con ese email ya esta registrado");
@@ -14,6 +15,7 @@ export const createAccount = async (req: Request, res: Response) => {
     return;
   }
 
+  // Valida si el handle ya esta siendo ocupado por otro usuario
   const handle = slug(req.body.handle, "");
   const handleExists = await User.findOne({ handle });
   if (handleExists) {
