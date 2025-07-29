@@ -5,6 +5,7 @@ import User from "../models/User";
 import { checkPassword, hashPassword } from "../utils/auth";
 import { generateJWT } from "../utils/jwt";
 
+// Create a new account
 export const createAccount = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
@@ -34,6 +35,7 @@ export const createAccount = async (req: Request, res: Response) => {
   res.status(201).send("Registro Creado Correctamente");
 };
 
+// Login
 export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
@@ -56,4 +58,34 @@ export const login = async (req: Request, res: Response) => {
   const token = generateJWT({ id: user._id });
 
   res.status(200).send(token);
+};
+
+// Get autenticated user
+export const getUser = async (req: Request, res: Response) => {
+  res.json(req.user);
+};
+
+// Update user
+export const updateProfile = async (req: Request, res: Response) => {
+  try {
+    const { description } = req.body;
+
+    const handle = slug(req.body.handle);
+    const handleExists = await User.findOne({ handle });
+    if (handleExists && handleExists.email !== req.user.email) {
+      const error = new Error("Nombre de usuario no disponible");
+      res.status(409).json({ error: error.message });
+      return;
+    }
+
+    // Actualizar el usuario
+    req.user.description = description;
+    req.user.handle = handle;
+    await req.user.save();
+    res.send("Perfil Actualizado Correctamente");
+  } catch (e) {
+    const error = new Error("Hubo un error");
+    res.status(500).json({ error: error.message });
+    return;
+  }
 };
